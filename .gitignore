@@ -1,83 +1,81 @@
-# Ignore Node.js dependencies
+# Node.js dependencies
 node_modules/
 
-# Ignore npm/yarn package lock files (choose one based on your package manager)
-package-lock.json
-yarn.lock
+# Package lock files (only one should be used - uncomment as needed)
+package-lock.json  # If you use npm
+# yarn.lock       # Uncomment if you use Yarn
+# pnpm-lock.yaml  # Uncomment if you use pnpm
 
-# Ignore build output and compiled files
-/build/
-/dist/
-/.next/
-/out/
-/public/*.js
-public/*.css
+# Build output and compiled files
+build/
+dist/
+.next/
+out/
+public/build/  # Only if you have a separate build process for public assets
 
-# Ignore environment variables
+# Environment variables (important!)
 .env
-*.env
+*.env.*
 
-# Ignore logs and cache files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Logs and cache
 *.log
 *.cache
 
-# Ignore local configuration files
-config/local.config.js
-config/secret-config.json
-
-# Ignore editor-specific files
+# Editor/IDE files (good - add more if needed)
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
-# Ignore test coverage reports
+# Test coverage reports
 coverage/
-test-results/
-reports/
 
-# Ignore Prettier and ESLint temporary files
-.prettierrc.tmp
-.eslintcache
-
-# Ignore Next.js specific files
-.next/
-out/
-public/build/
-
-# Ignore Vite specific files
-/vite.config.js
-/.vite/
-
-# Ignore Material UI specific files
-/node_modules/@mui/material/
-/node_modules/@emotion/react/
-/node_modules/@emotion/styled/
-
-# Ignore other common temporary files
+# Temporary files
 *.bak
 *.tmp
 *.swp
 *.swo
 
-# Ignore system files
-*.DS_Store
+# System files
+.DS_Store
 .AppleDouble
 .LSOverride
 
-# Ignore user-specific files
+# User-specific files
 *.sublime-project
 *.sublime-workspace
 
-# Ignore macOS Finder files
+# macOS Finder files
 ._*
 
-# Ignore Windows system files
+# Windows system files
 desktop.ini
 $RECYCLE.BIN/
-Thumbs.db
 ehthumbs.db
+
+# Prettier and ESLint cache
+.prettierrc.tmp
+.eslintcache
+
+# Optional: Large files (add patterns as needed)
+# *.zip
+# *.rar
+# *.7z
+
+# Optional: Data files (add directories if you *don't* want to track them)
+# data/
+# large_test_data/
+
+# Optional: Sensitive data (add specific files if needed - but ideally avoid committing these altogether)
+# config/secrets.js  # Example - but better to use environment variables
+
+# Optional: Docker-related files (if applicable)
+# .dockerignore
+
+# Optional: Cloud provider CLI configuration (if applicable)
+# .aws/
+# .gcloud/
+# .azure/
+
+# Optional: Static site generator output (if applicable and not covered by .next/ or build/)
+# public/ # Example for Gatsby, etc.
