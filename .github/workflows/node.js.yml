@@ -1,0 +1,75 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Setup Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Install Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install 3.1.44
+        ./emsdk activate 3.1.44
+        echo "EMSDK_PATH=$(pwd)" >> $GITHUB_ENV
+        echo "source $(pwd)/emsdk_env.sh" >> $GITHUB_ENV
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+          emsdk
+          src/wasm/*.wasm
+        key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - name: Build WASM modules
+      run: |
+        source $EMSDK_PATH/emsdk_env.sh
+        cd src/wasm
+        make clean
+        make all
+
+    - name: Run tests
+      run: |
+        npm test
+        npm run test:visual
+
+    - name: Build production bundle
+      run: npm run build
+
+    - name: Upload storybook artifacts
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: storybook
+        path: storybook-static
