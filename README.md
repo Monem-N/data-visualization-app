@@ -1,4 +1,4 @@
-# vizify V0
+# Vizify V0
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js CI](https://github.com/your-org/data-viz-app-v4/actions/workflows/node.js.yml/badge.svg)](https://github.com/your-org/data-viz-app-v4/actions)
