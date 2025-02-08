@@ -12,6 +12,8 @@ dist/
 .next/
 out/
 public/build/  # Only if you have a separate build process for public assets
+/src/wasm/*.wasm
+/src/wasm/*.js
 
 # Environment variables (important!)
 .env
@@ -40,15 +42,7 @@ coverage/
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# User-specific files
-*.sublime-project
-*.sublime-workspace
-
-# macOS Finder files
 ._*
-
-# Windows system files
 desktop.ini
 $RECYCLE.BIN/
 ehthumbs.db
@@ -57,25 +51,22 @@ ehthumbs.db
 .prettierrc.tmp
 .eslintcache
 
+# Capacitor files
+capacitor/.state
+capacitor.config.json
+
+# Storybook artifacts
+.storybook/
+storybook-static/
+
+# Docusaurus artifacts
+/build/
+/static/
+
+# AI/ML models
+/models/
+
 # Optional: Large files (add patterns as needed)
 # *.zip
 # *.rar
 # *.7z
-
-# Optional: Data files (add directories if you *don't* want to track them)
-# data/
-# large_test_data/
-
-# Optional: Sensitive data (add specific files if needed - but ideally avoid committing these altogether)
-# config/secrets.js  # Example - but better to use environment variables
-
-# Optional: Docker-related files (if applicable)
-# .dockerignore
-
-# Optional: Cloud provider CLI configuration (if applicable)
-# .aws/
-# .gcloud/
-# .azure/
-
-# Optional: Static site generator output (if applicable and not covered by .next/ or build/)
-# public/ # Example for Gatsby, etc.
